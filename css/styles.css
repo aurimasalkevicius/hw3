@@ -3,6 +3,9 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+
+/* Header */
+
 h1 {
     padding: 10px;
     border: 1px solid white;
@@ -10,7 +13,7 @@ h1 {
 }
 
 
-/* Input Form - styling */
+/* Container for Input Form */
 
 #main {
     margin-left: -15px;
@@ -21,7 +24,7 @@ h1 {
 }
 
 
-/* Input Form - label and input styling */
+/* Input Form - label and input */
 
 .col-form-label,
 .form-control {
@@ -30,7 +33,7 @@ h1 {
 }
 
 
-/* Table output*/
+/* Container for Generated Table*/
 
 .table-container-style {
     margin-top: 10px;
@@ -46,7 +49,7 @@ h1 {
 }
 
 
-/* Table output */
+/* Generated Table */
 
 #style-table {
     margin: 20px;
@@ -56,7 +59,7 @@ h1 {
 }
 
 
-/* First Row and Column */
+/* Generated Table - First Row and Column */
 
 td.header {
     color: #696969;
@@ -68,7 +71,7 @@ td.header {
 }
 
 
-/* Child with blank color in table */
+/* Generated Table - Lighter color squares */
 
 td.child-blank {
     text-align: center;
@@ -81,7 +84,7 @@ td.child-blank {
 }
 
 
-/* Child with background color in table */
+/* Generated Table - Darker color squares */
 
 td.child-color {
     text-align: center;
@@ -94,7 +97,7 @@ td.child-color {
 }
 
 
-/* for footer use only */
+/* Footer */
 
 #footer {
     font-style: italic;

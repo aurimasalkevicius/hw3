@@ -16,10 +16,6 @@ function myFunction() {
         // create table if the input passed the isWithinRange
         generateTable(smMplier, lgMplier, smMcand, lgMcand);
     }
-    // else {
-    //     // print empty table if failed to pass the checkvalid form
-    //     document.getElementById('table').innerHTML = "";
-    // }
 
 }
 
