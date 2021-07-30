@@ -7,7 +7,7 @@ body {
 /* Header */
 
 h1 {
-    padding: 10px;
+    padding: 20px;
     border: 1px solid white;
     background-color: #b5b5b5;
 }
@@ -37,8 +37,8 @@ h1 {
 
 .table-container-style {
     margin-top: 10px;
-    min-width: 555px;
-    max-width: 555px;
+    min-width: 750px;
+    max-width: 750px;
     max-height: 392px;
     min-height: 392px;
     padding: 20px;
