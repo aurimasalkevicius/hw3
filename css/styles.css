@@ -1,0 +1,143 @@
+body {
+    background-color: #DCDCDC;
+    font-family: Verdana, sans-serif;
+    /* padding: 20px; */
+    /* margin: 20px; */
+}
+
+h1 {
+    /* margin: 20px; */
+    /* min-width: 20%; */
+    /* max-width: 90%; */
+    padding: 10px;
+    border: 1px solid white;
+    background-color: #b5b5b5;
+}
+
+
+/* For Main div with red color border */
+
+#main {
+    margin-left: -15px;
+    margin-top: 10px;
+    /* min-width: 20%; */
+    /* max-width: 100%; */
+    padding: 20px;
+    border: 1px solid white;
+    background-color: #b5b5b5;
+}
+
+.col-form-label,
+.form-control {
+    margin-right: 20px;
+    min-width: 100px;
+}
+
+
+/* .form-control {
+    margin-right: 20px;
+} */
+
+
+/* Table output */
+
+.table-container-style {
+    /* max-width: 5%;
+    padding: 10px;
+    margin: 0 auto; */
+    /* margin: 20px; */
+    margin-top: 10px;
+    /* margin-left: 0; */
+    min-width: 555px;
+    max-width: 555px;
+    max-height: 392px;
+    min-height: 392px;
+    padding: 20px;
+    border: 1px solid white;
+    background-color: #b5b5b5;
+    float: left;
+    overflow: scroll;
+    /* margin-right: 20px;
+    padding-right: 20px; */
+}
+
+#table-container {
+    margin-right: 20px;
+}
+
+
+/* Table's style */
+
+#style-table {
+    margin: 20px;
+    min-width: 20%;
+    /* max-width: 100%; */
+    /* max-height: 80px; */
+    /* padding: 20px; */
+    border: 1px solid white;
+    background-color: #D3D3D3;
+    /* overflow: scroll; */
+    /* float: left; */
+    /* border-spacing: 1px;
+    width: 100%; */
+    /* empty-cells: hide; */
+}
+
+
+/* First Row and Column Color */
+
+td.header {
+    /* background-color: #d3d3d3; */
+    color: #696969;
+    border: #FFF 1px thin;
+    padding: 10px;
+    text-align: center;
+    font-size: 12pt;
+    font-family: Verdana, sans-serif;
+    /* overflow: scroll; */
+}
+
+
+/* Child with blank color in table */
+
+td.child-blank {
+    text-align: center;
+    border: 1px solid white;
+    background-color: #f4f4f4;
+    padding: 10px;
+    width: 12px;
+    height: 12px;
+    font-size: 12pt;
+}
+
+
+/* Child with background color in table */
+
+td.child-color {
+    text-align: center;
+    border: 1px solid white;
+    background-color: #d3d3d3;
+    padding: 10px;
+    width: 12px;
+    height: 12px;
+    font-size: 12pt;
+}
+
+
+/* for footer use only */
+
+#footer {
+    font-style: italic;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid white;
+    background-color: #b5b5b5;
+}
+
+
+/* For make div in stay in order*/
+
+.clear {
+    clear: both;
+}
