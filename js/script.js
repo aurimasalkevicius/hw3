@@ -1,3 +1,14 @@
+/*
+File: scripts.js
+GUI Assignment 3: Creating an Interactive Dynamic Table
+
+Aurimas Alkevicius, UMass Lowell Computer Science, aurimas_alkevicius@cs.uml.edu
+Copyright (c) 2021 by Alkevicius. All rights reserved. May be freely copied or
+excerpted for educational purposes with credit to the author.
+updated by AA on July 21, 2021 at 5:18 PM
+*/
+
+// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
 function myFunction() {
 
     var smMplier, lgMplier, smMcand, lgMcand;
@@ -11,8 +22,6 @@ function myFunction() {
 
     // clears any previous tables
     document.getElementById('table-container').innerHTML = "";
-    // document.getElementById('table-container-style').innerHTML = "";
-
 
     if (validateInput(smMplier, lgMplier, smMcand, lgMcand, minOfRange, maxOfRange)) {
         // create table if the input passed the validateInput()
@@ -20,6 +29,7 @@ function myFunction() {
     }
 }
 
+// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
 function validateInput(smMul, lgMul, smCand, lgCand, minOfRange, maxOfRange) {
 
     // clear error element
@@ -76,6 +86,7 @@ function validateInput(smMul, lgMul, smCand, lgCand, minOfRange, maxOfRange) {
     }
 }
 
+// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
 function generateTable(smMul, lgMul, smCand, lgCand) {
 
     // finicky outcome unless parsed to integers
