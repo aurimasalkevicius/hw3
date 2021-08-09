@@ -90,12 +90,12 @@ function generateTable(multiplierStart, multiplierEnd, multiplicandStart, multip
     // start building the table
     // start building the first row (aka table header)
     // generate the blank cell for the top-left corner of the table 
-    dynamicTable = '<table>' + '<tr>' + "<td class='odd-cell'></td>";
+    dynamicTable = '<table>' + '<tr>' + "<td class='table-header'></td>";
 
     // continue building first row by adding multiplier from the range chosen by the user
     for (multiplier = multiplierStart; multiplier <= multiplierEnd; multiplier++) {
         // build the first row with alternating cell styles
-        dynamicTable += ((alternatingRow % 2 !== 0) ? "<td class='even-cell bold'>" : "<td class='odd-cell bold'>") + multiplier + "</td>";
+        dynamicTable += "<td class='table-header bold'>" + multiplier + "</td>";
         alternatingRow++;
     }
 
@@ -110,7 +110,7 @@ function generateTable(multiplierStart, multiplierEnd, multiplicandStart, multip
         dynamicTable += '<tr>';
 
         // each consecutive row starts with multiplicand from user input with alternating style
-        dynamicTable += ((alternatingRow % 2 == 0) ? "<td class='even-cell  bold'>" : "<td class='odd-cell bold'>") + multiplicand + "</td>";
+        dynamicTable += "<td class='table-header  bold'>" + multiplicand + "</td>";
         alternatingColumn = alternatingRow + 1
 
         // continue building row with alternating table cell styles
