@@ -5,143 +5,125 @@ GUI Assignment 3: Creating an Interactive Dynamic Table
 Aurimas Alkevicius, UMass Lowell Computer Science, aurimas_alkevicius@cs.uml.edu
 Copyright (c) 2021 by Alkevicius. All rights reserved. May be freely copied or
 excerpted for educational purposes with credit to the author.
-updated by AA on July 21, 2021 at 5:18 PM
+updated by AA on August 9, 2021
 */
 
-// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
-function myFunction() {
+const minOfRange = -50,
+    maxOfRange = 50;
 
-    var smMplier, lgMplier, smMcand, lgMcand;
-    const minOfRange = -50,
-        maxOfRange = 50;
+function validateInput() {
 
-    smMplier = document.getElementById("smMultiplier").value;
-    lgMplier = document.getElementById("lgMultiplier").value;
-    smMcand = document.getElementById("smMultiplicand").value;
-    lgMcand = document.getElementById("lgMultiplicand").value;
+    // this will hold error message
+    var errorMessage = '';
 
-    // clears any previous tables
-    document.getElementById('table-container').innerHTML = "";
+    //clear html elements
+    document.getElementById('errorMessage').innerHTML = '';
+    document.getElementById('dynamicTable').innerHTML = '';
 
-    if (validateInput(smMplier, lgMplier, smMcand, lgMcand, minOfRange, maxOfRange)) {
-        // create table if the input passed the validateInput()
-        generateTable(smMplier, lgMplier, smMcand, lgMcand);
+    // get user input values and parse them to integers
+    var multiplierStart = Number(document.getElementById("form").elements[0].value);
+    var multiplierEnd = Number(document.getElementById("form").elements[1].value);
+    var multiplicandStart = Number(document.getElementById("form").elements[2].value);
+    var multiplicandEnd = Number(document.getElementById("form").elements[3].value);
+
+    // user inpuut validation block
+    if (isEmptyField(multiplierStart)) errorMessage += "Please enter an integer in <em>Multiplier start</em> field.<br>";
+    if (isEmptyField(multiplierEnd)) errorMessage += "Please enter an integer in <em>Multiplier end</em> field.<br>";
+    if (isEmptyField(multiplicandStart)) errorMessage += "Please enter an integer in <em>Multiplicand start</em> field.<br>";
+    if (isEmptyField(multiplicandEnd)) errorMessage += "Please enter an integer in <em>Multiplicand end</em> field.<br>";
+
+    if (isOutOfRange(multiplierStart)) errorMessage += "An integer in <em>Multiplier start</em> field must be within -50 and 50.<br>";
+    if (isOutOfRange(multiplierEnd)) errorMessage += "An integer in <em>Multiplier end</em> field must be within -50 and 50.<br>";
+    if (isOutOfRange(multiplicandStart)) errorMessage += "An integer in <em>Multiplicand start</em> field must be within -50 and 50.<br>";
+    if (isOutOfRange(multiplicandEnd)) errorMessage += "An integer in <em>Multiplicand end</em> field must be within -50 and 50.<br>";
+
+    if (isFraction(multiplierStart)) errorMessage += "The input in <em>Multiplier start</em> field should be an integer.<br>";
+    if (isFraction(multiplierEnd)) errorMessage += "The input in <em>Multiplier end</em> field should be an integer.<br>";
+    if (isFraction(multiplicandStart)) errorMessage += "The input in <em>Multiplicand start</em> field should be an integer.<br>";
+    if (isFraction(multiplicandEnd)) errorMessage += "The input in <em>Multiplicand end</em> field should be an integer.<br>";
+
+    // swap values if user input is not in acending order
+    if (isInDecendingOrder(multiplierStart, multiplierEnd)) {
+        [multiplierStart, multiplierEnd] = [multiplierEnd, multiplierStart];
     }
+
+    if (isInDecendingOrder(multiplicandStart, multiplicandEnd)) {
+        [multiplicandStart, multiplicandEnd] = [multiplicandEnd, multiplicandStart];
+    }
+
+    // display error message if any
+    document.getElementById('errorMessage').innerHTML = errorMessage;
+
+    // generate table if no errors
+    if (errorMessage == '') generateTable(multiplierStart, multiplierEnd, multiplicandStart, multiplicandEnd);
+
 }
 
-// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
-function validateInput(smMul, lgMul, smCand, lgCand, minOfRange, maxOfRange) {
+// helper functions
 
-    // clear error element
-    document.getElementById('errorMessage').innerHTML = "";
-
-    // error flags
-    var hasMultiplierError,
-        hasMultiplicandError,
-        hasEmptyField, isOutOfRange;
-
-    // error string to be displayed
-    var errorMess = "";
-
-    // check for empty input fields
-    if (smMul == "" || lgMul == "" || smCand == "" || lgCand == "") {
-        hasEmptyField = true;
-        errorMess += "Please fill out all the fields.<br>";
-    } else { hasEmptyField = false; }
-
-    // check if user input is within the range
-    if (!isWithinRange(smMul, minOfRange, maxOfRange) || !isWithinRange(lgMul, minOfRange, maxOfRange) || !isWithinRange(smCand, minOfRange, maxOfRange) || !isWithinRange(lgCand, minOfRange, maxOfRange)) {
-        isOutOfRange = true;
-        errorMess += "Input values must be between -50 and 50 <br>";
-    } else {
-        isOutOfRange = false;
-    }
-
-    // check if small multiplier is smaller than large multiplier
-    if (!hasEmptyField) {
-        if (Number(smMul) > Number(lgMul)) {
-            hasMultiplierError = true;
-            errorMess += "Larger multiplier value can't be smaller than the smaller multiplier value. <br>";
-        } else {
-            hasMultiplierError = false;
-        }
-    }
-
-    // check if small multiplicand is smaller than large multiplicand
-    if (!hasEmptyField) {
-        if (Number(smCand) > Number(lgCand)) {
-            hasMultiplicandError = true;
-            errorMess += "Larger multiplicand value can't be smaller than the smaller multiplicand value. <br>";
-        } else {
-            hasMultiplicandError = false;
-        }
-    }
-
-    // display error message(s) if flagged
-    if (hasMultiplierError || hasMultiplicandError || hasEmptyField || isOutOfRange == true) {
-        document.getElementById('errorMessage').innerHTML = "<br><font color=#FF0000> Invalid Input Detected:</font><br>" + errorMess;
-        return false;
-    } else {
-        return true;
-    }
+function isEmptyField(inputField) {
+    return inputField === '';
 }
 
-// parts of this function credit to: Chuong Vu https://github.com/vdc1703/GUI/blob/master/GUI-I/HW6/js/hw6.js
-function generateTable(smMul, lgMul, smCand, lgCand) {
-
-    // finicky outcome unless parsed to integers
-    smMul = Number(smMul);
-    lgMul = Number(lgMul);
-    smCand = Number(smCand);
-    lgCand = Number(lgCand);
-
-    // for styling
-    var element = document.getElementById("table-container");
-    element.classList.add("table-container-style");
-
-    // Generated table, will add to it as we go
-    var createTable = "";
-
-    // for generating a checkered table grid - even = light fill, odd = dark fill
-    var isEven = 0;
-
-    //for styling
-    createTable += "<table id='style-table'>";
-
-    // this loop generates rows
-    for (var row = 0; row <= (lgCand - smCand + 1); row++) {
-        createTable += "<tr>";
-
-        // this loop generates data cells=>columns 
-        for (var col = 0; col <= (lgMul - smMul + 1); col++) {
-
-            // the first row of the table
-            if (row == 0) {
-                createTable += "<td class='header'>" + ((col == 0) ? "" : (col + smMul - 1)) + "</td>";
-
-                // the first column of the table
-            } else if (col == 0) {
-                createTable += "<td class='header'>" + (row + smCand - 1) + "</td>";
-
-                // the generate the rest of the table
-            } else {
-
-                // determine the cells background and execute multiplication
-                createTable += ((Number(isEven) % 2 == 0) ? "<td class='child-blank'>" : "<td class='child-color'>") + ((row + smCand - 1) * (col + smMul - 1)) + "</td>";
-                isEven++;
-            }
-        }
-
-        // for making checkered pattern, each row starts with alternating fill
-        row % 2 == 0 ? isEven = 0 : isEven = 1;
-        createTable += "</tr>";
-    }
-    createTable += "</table>";
-
-    // prints generated table
-    document.getElementById('table-container').innerHTML = createTable;
+function isOutOfRange(inputField) {
+    return (inputField < minOfRange || inputField > maxOfRange);
 }
 
-function isWithinRange(numToValidate, minOfRange, maxOfRange) {
-    return (numToValidate >= minOfRange && numToValidate <= maxOfRange);
+function isFraction(inputField) {
+    return inputField % 1 !== 0;
+}
+
+function isInDecendingOrder(inputField1, inputField2) {
+    return inputField1 > inputField2;
+}
+
+// generate table
+
+function generateTable(multiplierStart, multiplierEnd, multiplicandStart, multiplicandEnd) {
+    var dynamicTable = '',
+        multiplier, multiplicand, alternatingColumn,
+        alternatingRow = 1; //alternatingColumn and alternatingRow are used to alternate table cell style 
+
+    // adding dynamic table styling
+    document.getElementById("dynamicTable").classList.add("generated-table-style");
+
+    // start building the table
+    // start building the first row (aka table header)
+    // generate the blank cell for the top-left corner of the table 
+    dynamicTable = '<table>' + '<tr>' + "<td class='odd-cell'></td>";
+
+    // continue building first row by adding multiplier from the range chosen by the user
+    for (multiplier = multiplierStart; multiplier <= multiplierEnd; multiplier++) {
+        // build the first row with alternating cell styles
+        dynamicTable += ((alternatingRow % 2 !== 0) ? "<td class='even-cell bold'>" : "<td class='odd-cell bold'>") + multiplier + "</td>";
+        alternatingRow++;
+    }
+
+    // finish building the first row
+    dynamicTable += '</tr>';
+    alternatingRow = 0;
+
+    // start building the rest of the table
+    for (multiplicand = multiplicandStart; multiplicand <= multiplicandEnd; multiplicand++) {
+
+        // start building the row of this loop
+        dynamicTable += '<tr>';
+
+        // each consecutive row starts with multiplicand from user input with alternating style
+        dynamicTable += ((alternatingRow % 2 == 0) ? "<td class='even-cell  bold'>" : "<td class='odd-cell bold'>") + multiplicand + "</td>";
+        alternatingColumn = alternatingRow + 1
+
+        // continue building row with alternating table cell styles
+        for (multiplier = multiplierStart; multiplier <= multiplierEnd; multiplier++) {
+            dynamicTable += ((alternatingColumn % 2 == 0) ? "<td class='even-cell'>" : "<td class='odd-cell'>") + (multiplier * multiplicand) + "</td>";
+            alternatingColumn++;
+        }
+
+        // finish building row of this loop
+        dynamicTable += '</tr>';
+        alternatingRow++
+    }
+
+    // finish building the table and display it
+    document.getElementById('dynamicTable').innerHTML = (dynamicTable += '</table>');
 }

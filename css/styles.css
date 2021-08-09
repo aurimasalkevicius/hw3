@@ -5,88 +5,59 @@ GUI Assignment 3: Creating an Interactive Dynamic Table
 Aurimas Alkevicius, UMass Lowell Computer Science, aurimas_alkevicius@cs.uml.edu
 Copyright (c) 2021 by Alkevicius. All rights reserved. May be freely copied or
 excerpted for educational purposes with credit to the author.
-updated by AA on July 31, 2021 at 10:18 AM
+updated by AA on August 9, 2021
 */
 
 body {
-    background-color: #DCDCDC;
-    font-family: Verdana, sans-serif;
+    background-color: lightyellow;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
-/* Header */
-
-h1 {
-    padding: 20px;
-    border: 1px solid white;
-    background-color: #b5b5b5;
-}
-
-
-/* Container for Input Form */
+/* Input form */
 
 #main {
-    margin-left: -15px;
+    background-color: lightgreen;
     margin-top: 10px;
     padding: 20px;
-    border: 1px solid white;
-    background-color: #b5b5b5;
+    height: 392px;
+    border: 2px solid blue;
+    overflow: scroll;
 }
 
-
-/* Input Form - label and input */
-
-.col-form-label,
-.form-control {
-    margin-right: 20px;
-    min-width: 100px;
-}
-
-
-/* Container for Generated Table*/
-
-.table-container-style {
+.generated-table-style {
     margin-top: 10px;
-    min-width: 750px;
-    max-width: 750px;
-    max-height: 392px;
-    min-height: 392px;
+    width: 750px;
+    height: 392px;
     padding: 20px;
-    border: 1px solid white;
-    background-color: #b5b5b5;
+    border: 2px solid blue;
+    background-color: lightgreen;
     float: left;
     overflow: scroll;
 }
 
 
-/* Generated Table */
+/* Submit button */
 
-#style-table {
-    margin: 20px;
-    min-width: 20%;
-    border: 5px solid white;
-    background-color: #D3D3D3;
+.btn {
+    border: 1px solid blue;
+    background-color: magenta;
 }
 
 
-/* Generated Table - First Row and Column */
+/* Input fields */
 
-td.header {
-    color: #696969;
-    border: #FFF 1px thin;
-    padding: 10px;
-    text-align: center;
-    font-size: 12pt;
-    font-family: Verdana, sans-serif;
+.form-control {
+    border: 1px solid blue;
 }
 
 
-/* Generated Table - Lighter color squares */
+/* Used to achieve checkered style */
 
-td.child-blank {
+.odd-cell {
     text-align: center;
-    border: 1px solid white;
-    background-color: #f4f4f4;
+    border: 3px solid lightgreen;
+    background-color: yellow;
     padding: 10px;
     width: 12px;
     height: 12px;
@@ -94,26 +65,32 @@ td.child-blank {
 }
 
 
-/* Generated Table - Darker color squares */
+/* Used to achieve checkered style */
 
-td.child-color {
+.even-cell {
     text-align: center;
-    border: 1px solid white;
-    background-color: #d3d3d3;
+    border: 3px solid lightgreen;
+    background-color: #FC886F;
     padding: 10px;
     width: 12px;
     height: 12px;
     font-size: 12pt;
 }
 
+.bold {
+    font-weight: bold;
+    font-size: 15pt;
+}
 
-/* Footer */
+h3 {
+    margin-bottom: 30px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
 
 #footer {
-    font-style: italic;
-    padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border: 1px solid white;
-    background-color: #b5b5b5;
+    padding-top: 40px;
 }

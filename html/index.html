@@ -5,7 +5,7 @@ GUI Assignment 3: Creating an Interactive Dynamic Table
 Aurimas Alkevicius, UMass Lowell Computer Science, aurimas_alkevicius@cs.uml.edu
 Copyright (c) 2021 by Alkevicius. All rights reserved. May be freely copied or
 excerpted for educational purposes with credit to the author.
-updated by AA on July 31, 2021 at 10:18 AM
+updated by AA on August 9, 2021
 -->
 
 <!DOCTYPE html>
@@ -15,9 +15,11 @@ updated by AA on July 31, 2021 at 10:18 AM
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title>Multiplication Table</title>
     <link href="../css/styles.css" rel="stylesheet">
+
+    <title>Multiplication Table</title>
 </head>
 
 <body>
@@ -25,43 +27,43 @@ updated by AA on July 31, 2021 at 10:18 AM
 
         <!-- Header -->
         <div class="row">
-            <h1 class="col" style="text-align: center">Dynamic Multiplication Table</h1>
+            <h1 class="col">Dynamic Multiplication Table</h1>
         </div>
 
         <!-- Input Form and Multiplication Table -->
         <div class="row">
 
             <!-- Input Form -->
-            <div class="col-sm-4">
+            <div class="col-md-4">
                 <div id="main">
-                    <h3 class="title" style="margin-bottom: 30px">Enter the range:</h3>
-                    <form>
-                        <div id="small-multiplier" class="form-group row">
-                            <label class="col-xs-2   col-form-label">Smaller multiplier: </label>
-                            <div class="col-xs-2 ">
-                                <input type="number" class="form-control " id="smMultiplier" min="-50" max="50" required>
+                    <h3><strong>Enter the range:</strong> </h3>
+                    <form id="form">
+                        <div class="form-group row">
+                            <label class="col-md-8  ">Multiplier starting range: </label>
+                            <div class="col-md-4 ">
+                                <input type="number" class="form-control bold">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-xs-2  col-form-label">Larger multiplier: </label>
-                            <div class="col-xs-2 ">
-                                <input type="number" class="form-control" id="lgMultiplier" min="-50" max="50" required>
+                            <label class="col-md-8 ">Multiplier ending range: </label>
+                            <div class="col-md-4 ">
+                                <input type="number" class="form-control bold">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-xs-2  col-form-label">Smaller multiplicand: </label>
-                            <div class="col-xs-2 ">
-                                <input type="number" class="form-control" id="smMultiplicand" min="-50" max="50" required>
+                            <label class="col-md-8  ">Multiplicand starting range: </label>
+                            <div class="col-md-4 ">
+                                <input type="number" class="form-control bold">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-xs-2  col-form-label">Larger multiplicand: </label>
-                            <div class="col-xs-2 ">
-                                <input type="number" class="form-control" id="lgMultiplicand" min="-50" max="50" required>
+                            <label class="col-md-8  ">Multiplicand ending range: </label>
+                            <div class="col-md-4 ">
+                                <input type="number" class="form-control bold">
                             </div>
                         </div>
-                        <div class="col-xs-auto">
-                            <input type="button" onclick="myFunction()" class="btn btn-dark" value="Submit">
+                        <div class="col-md-auto">
+                            <input type="button" onclick="validateInput()" class="btn bold" value="Submit">
                         </div>
                     </form>
                     <div id='errorMessage'></div>
@@ -69,23 +71,19 @@ updated by AA on July 31, 2021 at 10:18 AM
             </div>
 
             <!-- Multiplication Table -->
-            <div class="col-sm-8">
-                <div class="container">
-                    <div id="table-container"></div>
-                </div>
+            <div class="container">
+                <div class="table" id="dynamicTable"></div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="row">
-            <div id="footer">
-                <div class="col">
-                    <p style="text-align: center">GUI I 2021 <br> Aurimas Alkevicius<br> </p>
-                    <p style="text-align: center">
-                        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Faurimasalkevicius.github.io%2Fhw3%2Fhtml%2Findex.html&profile=css3svg&usermedium=all&warning=0&vextwarning=&lang=en"><img style="border:0;width:88px;height:31px" src="../img/valid-css.png" alt="Valid CSS!"></a>
-                        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Faurimasalkevicius.github.io%2Fhw3%2Fhtml%2Findex.html"><img style="border:0;width:88px;height:31px" src="../img/valid-html.png" alt="Valid HTML5"></a>
-                    </p>
-                </div>
+        <div class="row" id="footer">
+            <div class="col">
+                <p style="text-align: center">GUI I 2021 <br> Aurimas Alkevicius<br> </p>
+                <p style="text-align: center">
+                    <!-- <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Faurimasalkevicius.github.io%2Fhw3%2Fhtml%2Findex.html&profile=css3svg&usermedium=all&warning=0&vextwarning=&lang=en"><img style="border:0;width:88px;height:31px" src="../img/valid-css.png" alt="Valid CSS!"></a> -->
+                    <!-- <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Faurimasalkevicius.github.io%2Fhw3%2Fhtml%2Findex.html"><img style="border:0;width:88px;height:31px" src="../img/valid-html.png" alt="Valid HTML5"></a> -->
+                </p>
             </div>
         </div>
     </div>
